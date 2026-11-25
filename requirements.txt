@@ -1,0 +1,15 @@
+strands-agents==1.63.0
+
+fastapi==0.162.0
+uvicorn[standard]==0.54.0
+pydantic==2.14.2
+
+# strands-agents resolves wrapt 2.x, which Agent Manager's auto-instrumentation
+# cannot use. Keep this pin or the platform-injected tracing fails at startup.
+wrapt==1.17.3
+
+# strands-agents allows mcp up to 2.3, but mcp 2.x removed streamablehttp_client,
+# which Agent Manager's injected MCP instrumentor wraps. Without this pin every
+# start logs "Error initializing MCP instrumentor ... streamablehttp_client".
+# This agent doesn't use MCP; the pin just keeps the instrumentor happy.
+mcp==1.30.0
